@@ -42,7 +42,7 @@ class CompanyController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => [
-                'required',
+                'nullable',
                 'email',
                 'max:255',
                 Rule::unique('companies', 'email')->whereNull('deleted_at'),
@@ -122,10 +122,18 @@ class CompanyController extends Controller
             if ($company->logo) {
                 Storage::disk('public')->delete($company->logo);
             }
-            $company->logo = $request->file('logo')->store('logos', 'public');
+
+            $logoPath = null;
+            if ($request->hasFile('logo')) {
+                $logoPath = $request->file('logo')->store('logos', 'public');
+            }
         }
 
-        $company->update($request->only('name', 'email', 'logo', 'website'));
+        $company->name = $request->name;
+        $company->email = $request->email;
+        $company->logo = $logoPath;
+        $company->website = $request->website;
+        $company->save();
 
         return redirect()->route('companies.index')->with('success', 'Company updated successfully!');
     }

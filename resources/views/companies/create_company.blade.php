@@ -20,7 +20,7 @@
         <form action="{{ route('companies.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
-                <label for="name" class="form-label">Name</label>
+                <label for="name" class="form-label">Name<span class="text-danger">*</span></label>
                 <input type="text" id="name" name="name" class="form-control" value="{{ old('name') }}"
                     required>
             </div>

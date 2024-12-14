@@ -9,11 +9,6 @@
 </head>
 
 <body>
-    {{-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-            <a class="navbar-brand" href="{{ route('companies.index') }}">Company Manager</a>
-        </div>
-    </nav> --}}
     <main class="py-4">
         @yield('content')
     </main>

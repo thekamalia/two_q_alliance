@@ -22,7 +22,7 @@
             @method('PUT')
 
             <div class="mb-3">
-                <label for="name" class="form-label">Name</label>
+                <label for="name" class="form-label">Name<span class="text-danger">*</span></label>
                 <input type="text" id="name" name="name" class="form-control"
                     value="{{ old('name', $company->name) }}" required>
             </div>
@@ -37,9 +37,9 @@
                 <label for="logo" class="form-label">Logo (100x100 min)</label>
                 <input type="file" id="logo" name="logo" class="form-control" accept="image/*">
                 @if ($company->logo)
-                    <div class="mt-2">
-                        <img src="{{ asset('storage/' . $company->logo) }}" alt="Current Logo" width="100">
-                    </div>
+                    <img src="{{ Storage::url($company->logo) }}" alt="Company Logo" width="100">
+                @else
+                    <span>No Logo</span>
                 @endif
             </div>
 

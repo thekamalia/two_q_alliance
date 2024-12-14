@@ -41,7 +41,7 @@
                                     <img src="{{ Storage::url($company->logo) }}" alt="Logo" width="50"
                                         height="50">
                                 @else
-                                    <span>No Logo</span>
+                                    <span>-</span>
                                 @endif {{ $company->name }}
                             </td>
                             <td>{{ $company->email }}</td>
